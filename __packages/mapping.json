@@ -1,0 +1,179 @@
+{
+    "indicators": [
+        {
+            "slug_id": "average-household-size-by-area",
+            "title": {
+                "en":"Average Household Size By Area",
+                "fr":"Taille moyenne des ménages par zone"
+            },
+            "description": {
+                "en":"The average number of people living in a household, broken down by geographic area.",
+                "fr":"Le nombre moyen de personnes vivant dans un ménage, réparti par zone géographique."
+            },
+            "unit_of_measurement": "Persons",
+            "categories":  "Demographic",
+            "chart_type": "BarChart"
+        },
+        {
+            "title": {
+                "en":"Male to Female Ratio",
+                "fr":"Ratio hommes/femmes"
+            },
+            "description": {
+                "en":"The ratio of males to females in a population.",
+                "fr":"Le ratio entre le nombre d'hommes et de femmes dans une population."
+            },
+            "unit_of_measurement": "Ratio of males to females",
+            "categories":  "Demographic",
+            "chart_type": "StackBarChart",
+            "slug_id": "male-to-female-ratio"
+        },
+        {
+            "title": {
+                "en":"Average Interview Time",
+                "fr":"Durée moyenne d'un entretien"
+            },
+            "description": {
+                "en":"The average length of time it takes to conduct an interview.",
+                "fr":"La durée moyenne d'un entretien."
+            },
+            "unit_of_measurement": "Minutes",
+            "categories":  "Meta",
+            "chart_type": "BarChart",
+            "slug_id": "average-interview-time"
+        },
+        {
+            "title": {
+                "en":"Estimated Number of Days Left",
+                "fr":"Nombre estimé de jours restants"
+            },
+            "description": {
+                "en": "The estimated number of days left in a project.",
+                "fr":"Le nombre estimé de jours restants dans un projet."
+                },
+            "unit_of_measurement": "Days",
+            "categories":  "Meta",
+            "chart_type": "BarChart",
+            "slug_id": "estimated-number-of-days-left"
+        },
+        {
+            "title": {
+                "en":"Partially Completed Cases",
+                "fr":"Cas partiellement complétés"
+            },
+            "description": "The number of cases that have been partially completed.",
+            "unit_of_measurement": "Number of cases",
+            "categories":  "Meta",
+            "chart_type": "BarChart",
+            "slug_id": "partially-completed-cases"
+        },
+        {
+            "title": {
+                "en":"Households mapped Against Target",
+                "fr":"Ménages cartographiés par rapport à la cible"
+            },
+            "description": {
+                "en":"The number of households that have been mapped, compared to the target number of households.",
+                "fr":"Le nombre de ménages qui ont été recensés, comparé au nombre cible de ménages."
+                },
+            "unit_of_measurement": "Number of households",
+            "categories":  "Performance",
+            "chart_type": "BarChart",
+            "slug_id": "households-enumerated-against-target"
+        },
+        {
+            "title": {
+                "en":"Households mapped Against Target by Day",
+                "fr":"Ménages recensés par rapport à la cible par jour"
+            },
+            "description": {
+                "en":"The number of households that have been mapped each day, compared to the target number of households.",
+                "fr":"Le nombre de ménages qui ont été recensés chaque jour, comparé au nombre cible de ménages."
+            },
+            "unit_of_measurement": "Number of households",
+            "categories":  "Performance",
+            "chart_type": "BarChart",
+            "slug_id": "households-enumerated-against-target-by-day"
+        },
+        {
+            "title": {
+                "en":"Households mapped by Day (Cumulative)",
+                "fr":"Ménages cartographiés par jour (cumulatif)"
+            },
+            "description": {
+                "en":"The cumulative number of households that have been mapped each day.",},
+            "unit_of_measurement": "Number of households",
+            "categories":  "Performance",
+            "chart_type": "LineChart",
+            "slug_id": "households-enumerated-by-day-cumulative"
+        },
+        {
+            "title": {
+                "en":"Percentage of Household mapped Against Target",
+                "fr":"Pourcentage de ménages recensés par rapport à la cible"
+            },
+            "description": {
+                "en":"The percentage of households that have been mapped, compared to the target number of households.",},
+            "unit_of_measurement": "Percentage of households",
+            "categories":  "Performance",
+            "chart_type": "BarChart",
+            "slug_id": "percentage-household-enumerated-against-target"
+        },
+        {
+            "title": {
+                "en":"Percentage of Population mapped Against Target",
+                "fr":"Pourcentage de la population recensée par rapport à la cible"
+            },
+            "description": {
+                "en":"The percentage of the population that has been mapped, compared to the target number of population.",
+                "fr":"Le pourcentage de la population qui a été recensée, comparé au nombre cible de population."
+            },
+            "unit_of_measurement": "Percentage of population",
+            "categories":  "Performance",
+            "chart_type": "BarChart",
+            "slug_id": "percentage-population-enumerated-against-target"
+        },
+        {
+            "title": {
+                "en":"Population mapped Against Target",
+                "fr":"Population recensée par rapport à la cible"
+            },
+            "description": {
+                "en":"The number of people in the population that have been mapped, compared to the target number of population.",
+                "fr":"Le nombre de personnes dans la population qui ont été recensées, comparé au nombre cible de population."
+            },
+            "unit_of_measurement": "Number of people",
+            "categories":  "Performance",
+            "chart_type": "BarChart",
+            "slug_id": "population-enumerated-against-target"
+        },
+        {
+            "title": {
+                "en":"Population mapped by Day",
+                "fr":"Population recensée par jour"
+            },
+            "description": {
+                "en":"The number of people in the population that have been mapped each day.",
+                "fr":"Le nombre de personnes dans la population qui ont été recensées chaque jour."
+            },
+            "unit_of_measurement": "Number of people",
+            "categories":  "Performance",
+            "chart_type": "BarChart",
+            "slug_id": "population-enumerated-by-day"
+        },
+        {
+            "title": {
+                "en":"Population mapped by Day (Cumulative)",
+                "fr":"Population recensée par jour (cumulatif)"
+            },
+            "description": {
+                "en":"The cumulative number of people in the population that have been mapped each day.",
+                "fr":"Le nombre cumulatif de personnes dans la population qui ont été recensées chaque jour."
+            },
+            "unit_of_measurement": "Number of people",
+            "categories":  "Performance",
+            "chart_type": "LineChart",
+            "slug_id": "population-enumerated-by-day-cumulative"
+        }
+    ]
+}

@@ -14,6 +14,21 @@ class AverageHouseholdSizeByArea extends Chart implements BarChart
     use FilterBasedAxisTitle;
     private bool $isSampleData = false;
 
+    /* 
+    * Uncomment this function to use the actual data from the database
+    * public function getData(array $filter): Collection
+    * {
+    *     list($selectColumns, $whereConditions) = QueryFragmentFactory::make($this->indicator->questionnaire)->getSqlFragments($filter);
+    *     return (new BreakoutQueryBuilder($this->indicator->questionnaire))
+    *         ->select(array_merge(["SUM(%population_variable%) as population,Count(*) as households"], $selectColumns))
+    *         ->from(['%household_table%'])
+    *         ->where(array_merge(['%household_case_filter%'],$whereConditions))
+    *         ->groupBy(['area_code'])
+    *         ->orderBy(['area_name'])
+    *         ->get();
+    * }
+    */
+
     public function getData(array $filter): Collection
     {
         $this->isSampleData = true;
