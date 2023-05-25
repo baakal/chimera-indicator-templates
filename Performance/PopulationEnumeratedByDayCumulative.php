@@ -50,8 +50,8 @@ class PopulationEnumeratedByDayCumulative  extends Chart implements LineChart
         $start_date = $questionnaire->start_date;
         $end_date = $questionnaire->end_date;
 
-        $totalDays = $end_date->diffInDays($start_date) + 1; 
-        $areas = (new AreaTree())->areas($filterPath, nameOfReferenceValueToInclude: 'number_of_hh');
+        $totalDays = $end_date->diffInDays($start_date) + 1;
+        $areas = (new AreaTree())->areas($filterPath, nameOfReferenceValueToInclude: 'population');
         if($this->isSampleData){
             $areas = $data->map(function ($item) use ($data) {
                 return (object) [
@@ -77,9 +77,9 @@ class PopulationEnumeratedByDayCumulative  extends Chart implements LineChart
             [
                 'x' => $data->pluck('nice_date')->all(),
                 'y' => $data->pluck('cumulative_sum')->all(),
-                'texttemplate' => "%{value:.2f}",
-                'hovertemplate' => "%{label}<br> %{value:.0f}",
-                'name' => 'Actual',
+                'texttemplate' => "%{y:.2f}",
+                'hovertemplate' => "%{x}<br> %{y:.0f}",
+                'name' => __('Actual'),
             ]
         );
         $traceTarget = array_merge(
@@ -87,9 +87,9 @@ class PopulationEnumeratedByDayCumulative  extends Chart implements LineChart
             [
                 'x' => $data->pluck('nice_date')->all(),
                 'y' => $data->pluck('target')->all(),
-                'texttemplate' => "%{value:.2f}",
-                'hovertemplate' => "%{label}<br> %{value:.0f}",
-                'name' => 'Target',
+                'texttemplate' => "%{y:.2f}",
+                'hovertemplate' => "%{x}<br> %{y:.0f}",
+                'name' => __('Target'),
             ]
         );
 
@@ -98,9 +98,9 @@ class PopulationEnumeratedByDayCumulative  extends Chart implements LineChart
 
     protected function getLayout(string $filterPath): array
     {
-        $layout = parent::getLayout($filterPath);        
-        $layout['xaxis']['title']['text'] = "Enumeration dates";
-        $layout['yaxis']['title']['text'] = "# of persons (cumulative)";
+        $layout = parent::getLayout($filterPath);
+        $layout['xaxis']['title']['text'] = __("Enumeration dates");
+        $layout['yaxis']['title']['text'] = __("# of persons (cumulative)");
         $layout['colorway'] = ['#1e3b87', '#c99c25', '#6f066f', '#7a37aa', '#a30538', '#ff0506', '#dba61f', '#ff6f06', '#fea405', '#ffff05', '#a3d804', '#056e05', '#3939d9', '#0579cc'];
         if ($this->isSampleData) {
             $layout['annotations'] = [[

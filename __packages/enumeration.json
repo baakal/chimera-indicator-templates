@@ -2,153 +2,267 @@
     "indicators": [
         {
             "slug_id": "average-household-size-by-area",
-            "title": "Average Household Size By Area",
-            "description": "The average number of people living in a household, broken down by geographic area.",
+            "title": {
+                "en": "Average Household Size By Area",
+                "fr": "Taille moyenne des ménages par zone"
+            },
+            "description": {
+                "en": "The average number of people living in a household, broken down by geographic area.",
+                "fr": "Le nombre moyen de personnes vivant dans un ménage, divisé par zone géographique."
+            },
             "unit_of_measurement": "Persons",
-            "categories":  "Demographic",
+            "categories": "Demographic",
             "chart_type": "BarChart"
         },
         {
-            "title": "Birth Rate",
-            "description": "The number of live births per 1,000 population.",
+            "title": {
+                "en": "Birth Rate",
+                "fr": "Taux de natalité"
+            },
+            "description": {
+                "en": "The number of live births per 1,000 population.",
+                "fr": "Le nombre de naissances vivantes par 1 000 habitants."
+            },
             "unit_of_measurement": "Births per 1,000 population",
-            "categories":  "Demographic",
+            "categories": "Demographic",
             "chart_type": "BarChart",
             "slug_id": "birth-rate"
         },
         {
-            "title": "Death Rate",
-            "description": "The number of deaths per 1,000 population.",
+            "title": {
+                "en": "Death Rate",
+                "fr": "Taux de mortalité"
+            },
+            "description": {
+                "en": "The number of deaths per 1,000 population.",
+                "fr": "Le nombre de mortalités par 1 000 habitants."
+            },
             "unit_of_measurement": "Deaths per 1,000 population",
-            "categories":  "Demographic",
+            "categories": "Demographic",
             "chart_type": "BarChart",
             "slug_id": "death-rate"
         },
         {
-            "title": "Male to Female Ratio",
-            "description": "The ratio of males to females in a population.",
+            "title": {
+                "en": "Male to Female Ratio",
+                "fr": "Ratio hommes/femmes"
+            },
+            "description": {
+                "en": "The ratio of males to females in a population.",
+                "fr": "Le ratio entre hommes et femmes dans une population."
+            },
             "unit_of_measurement": "Ratio of males to females",
-            "categories":  "Demographic",
+            "categories": "Demographic",
             "chart_type": "StackBarChart",
             "slug_id": "male-to-female-ratio"
         },
         {
-            "title": "Maternal Mortality Ratio",
-            "description": "The number of maternal deaths per 100,000 live births.",
+            "title": {
+                "en": "Maternal Mortality Ratio",
+                "fr": "Ratio de mortalité maternelle"
+            },
+            "description": {
+                "en": "The number of maternal deaths per 100,000 live births.",
+                "fr": "Le nombre de mortalités maternelles par 100 000 naissances vivantes."
+            },
             "unit_of_measurement": "Maternal deaths per 100,000 live births",
-            "categories":  "Demographic",
+            "categories": "Demographic",
             "chart_type": "StackBarChart",
             "slug_id": "maternal-mortality-ratio"
         },
         {
-            "title": "Population Distribution by Broad Age Group",
-            "description": "The distribution of a population by age group.",
+            "title": {
+                "en": "Population Distribution by Broad Age Group",
+                "fr": "Répartition de la population par groupe d'âge"
+            },
+            "description": {
+                "en": "The distribution of a population by age group.",
+                "fr": "La répartition d'une population par groupe d'âge."
+            },
             "unit_of_measurement": "Percentage of population",
-            "categories":  "Demographic",
+            "categories": "Demographic",
             "chart_type": "StackBarChart",
             "slug_id": "population-distribution-by-broad-age-group"
         },
         {
-            "title": "Population Pyramid",
-            "description": "A graphical representation of the distribution of a population by age and gender.",
+            "title": {
+                "en": "Population Pyramid",
+                "fr": "Pyramide des âges"
+            },
+            "description": {
+                "en": "A graphical representation of the distribution of a population by age and gender.",
+                "fr": "Une représentation graphique de la répartition d'une population par âge et sexe."
+            },
             "unit_of_measurement": "Percentage of population",
-            "categories":  "Demographic",
+            "categories": "Demographic",
             "chart_type": "Pyramid",
             "slug_id": "population-pyramid"
         },
         {
-            "title": "Single Age Population",
-            "description": "The number of people in a population by single age.",
+            "title": {
+                "en": "Single Age Population",
+                "fr": "Population par âge"
+            },
+            "description": {
+                "en": "The number of people in a population by single age.",
+                "fr": "Le nombre de personnes dans une population par âge."
+            },
             "unit_of_measurement": "Number of people",
-            "categories":  "Demographic",
+            "categories": "Demographic",
             "chart_type": "BarChart",
             "slug_id": "single-age-population"
         },
         {
-            "title": "Average Interview Time",
-            "description": "The average length of time it takes to conduct an interview.",
+            "title": {
+                "en": "Average Interview Time",
+                "fr": "Durée moyenne d'un entretien"
+            },
+            "description": {
+                "en": "The average length of time it takes to conduct an interview.",
+                "fr": "La durée moyenne d'un entretien."
+            },
             "unit_of_measurement": "Minutes",
-            "categories":  "Meta",
+            "categories": "Meta",
             "chart_type": "BarChart",
             "slug_id": "average-interview-time"
         },
         {
-            "title": "Estimated Number of Days Left",
-            "description": "The estimated number of days left in a project.",
+            "title": {
+                "en": "Estimated Number of Days Left",
+                "fr": "Nombre estimé de jours restants"
+            },
+            "description": {
+                "en": "The estimated number of days left in a project.",
+                "fr": "Le nombre estimé de jours restants dans un projet."
+            },
             "unit_of_measurement": "Days",
-            "categories":  "Meta",
+            "categories": "Meta",
             "chart_type": "BarChart",
             "slug_id": "estimated-number-of-days-left"
         },
         {
-            "title": "Partially Completed Cases",
-            "description": "The number of cases that have been partially completed.",
+            "title": {
+                "en": "Partially Completed Cases",
+                "fr": "Cas partiellement complétés"
+            },
+            "description": {
+                "en": "The number of cases that have been partially completed.",
+                "fr": "Le nombre de cas qui ont été partiellement complétés."
+            },
             "unit_of_measurement": "Number of cases",
-            "categories":  "Meta",
+            "categories": "Meta",
             "chart_type": "BarChart",
             "slug_id": "partially-completed-cases"
         },
         {
-            "title": "Households Enumerated Against Target",
-            "description": "The number of households that have been enumerated, compared to the target number of households.",
+            "title": {
+                "en": "Households Enumerated Against Target",
+                "fr": "Nombre de menages recensés par rapport à l'objectif"
+            },
+            "description": {
+                "en": "The number of households that have been enumerated, compared to the target number of households.",
+                "fr": "Le Nombre de menages recensés par rapport à l'objectif"
+            },
             "unit_of_measurement": "Number of households",
-            "categories":  "Performance",
+            "categories": "Performance",
             "chart_type": "BarChart",
             "slug_id": "households-enumerated-against-target"
         },
         {
-            "title": "Households Enumerated Against Target by Day",
-            "description": "The number of households that have been enumerated each day, compared to the target number of households.",
+            "title": {
+                "en": "Households Enumerated Against Target by Day",
+                "fr": "Nombre de menages recensés par rapport l'objectif du jour"
+            },
+            "description": {
+                "en": "The number of households that have been enumerated each day, compared to the target number of households.",
+                "fr": "Nombre de menages recensés par rapport du jour"
+            },
             "unit_of_measurement": "Number of households",
-            "categories":  "Performance",
+            "categories": "Performance",
             "chart_type": "BarChart",
             "slug_id": "households-enumerated-against-target-by-day"
         },
         {
-            "title": "Households Enumerated by Day (Cumulative)",
-            "description": "The cumulative number of households that have been enumerated each day.",
+            "title": {
+                "en": "Households Enumerated by Day (Cumulative)",
+                "fr": "Nombre de menages recensés par jour (cumulatif)"
+            },
+            "description": {
+                "en": "The cumulative number of households that have been enumerated each day.",
+                "fr": "Le nombre cumulatif de ménages qui ont été recensés chaque jour."
+            },
             "unit_of_measurement": "Number of households",
-            "categories":  "Performance",
+            "categories": "Performance",
             "chart_type": "LineChart",
             "slug_id": "households-enumerated-by-day-cumulative"
         },
         {
-            "title": "Percentage of Household Enumerated Against Target",
-            "description": "The percentage of households that have been enumerated, compared to the target number of households.",
+            "title": {
+                "en": "Percentage of Household Enumerated Against Target",
+                "fr": "Pourcentage de menages recensés par rapport à l'objectif"
+            },
+            "description": {
+                "en": "The percentage of households that have been enumerated, compared to the target number of households.",
+                "fr": "Le pourcentage de ménages qui ont été recensés, comparé au nombre cible de ménages."
+            },
             "unit_of_measurement": "Percentage of households",
-            "categories":  "Performance",
+            "categories": "Performance",
             "chart_type": "BarChart",
             "slug_id": "percentage-household-enumerated-against-target"
         },
         {
-            "title": "Percentage of Population Enumerated Against Target",
-            "description": "The percentage of the population that has been enumerated, compared to the target number of population.",
+            "title": {
+                "en": "Percentage of Population Enumerated Against Target",
+                "fr": "Pourcentage de population recensée par rapport à l'objectif"
+            },
+            "description": {
+                "en": "The percentage of the population that has been enumerated, compared to the target number of population.",
+                "fr": "Le pourcentage de la population qui a été recensée, comparé au nombre cible de population."
+            },
             "unit_of_measurement": "Percentage of population",
-            "categories":  "Performance",
+            "categories": "Performance",
             "chart_type": "BarChart",
             "slug_id": "percentage-population-enumerated-against-target"
         },
         {
-            "title": "Population Enumerated Against Target",
-            "description": "The number of people in the population that have been enumerated, compared to the target number of population.",
+            "title": {
+                "en": "Population Enumerated Against Target",
+                "fr": "Population recensée par rapport à l'objectif"
+            },
+            "description": {
+                "en": "The number of people in the population that have been enumerated, compared to the target number of population.",
+                "fr": "Population recensée par rapport à l'objectif"
+            },
             "unit_of_measurement": "Number of people",
-            "categories":  "Performance",
+            "categories": "Performance",
             "chart_type": "BarChart",
             "slug_id": "population-enumerated-against-target"
         },
         {
-            "title": "Population Enumerated by Day",
-            "description": "The number of people in the population that have been enumerated each day.",
+            "title": {
+                "en": "Population Enumerated by Day",
+                "fr": "Population recensée par jour"
+            },
+            "description": {
+                "en": "The number of people in the population that have been enumerated each day.",
+                "fr": "Le nombre de personnes dans la population qui ont été recensées chaque jour."
+            },
             "unit_of_measurement": "Number of people",
-            "categories":  "Performance",
+            "categories": "Performance",
             "chart_type": "BarChart",
             "slug_id": "population-enumerated-by-day"
         },
         {
-            "title": "Population Enumerated by Day (Cumulative)",
-            "description": "The cumulative number of people in the population that have been enumerated each day.",
+            "title": {
+                "en": "Population Enumerated by Day (Cumulative)",
+                "fr": "Population recensée par jour (cumulatif)"
+            },
+            "description": {
+                "en": "The cumulative number of people in the population that have been enumerated each day.",
+                "fr": "Le nombre cumulatif de personnes dans la population qui ont été recensées chaque jour."
+            },
             "unit_of_measurement": "Number of people",
-            "categories":  "Performance",
+            "categories": "Performance",
             "chart_type": "LineChart",
             "slug_id": "population-enumerated-by-day-cumulative"
         }

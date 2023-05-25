@@ -69,37 +69,75 @@ class PercentagePopulationEnumeratedAgainstTarget extends Chart implements BarCh
         $now = Carbon::now();
         $startDate = $questionnaire->start_date->subDays(1);
         $endDate = $questionnaire->end_date;
-      
-        $total_Enum_days=$startDate->diffInDays($endDate,false);         
+
+        $total_Enum_days=$startDate->diffInDays($endDate,false);
         $days_Since_enum_start=$startDate->diffInDays($now,false);
         $day_count_yesterday=$startDate->diffInDays($now,false) - 1;
-        
+
         if($days_Since_enum_start > $total_Enum_days) {
-            $days_Since_enum_start = $total_Enum_days;            
+            $days_Since_enum_start = $total_Enum_days;
         }
         if($day_count_yesterday > $total_Enum_days) {
-            $day_count_yesterday = $total_Enum_days;            
+            $day_count_yesterday = $total_Enum_days;
         }
         $dataKeyByAreaCode = $data->keyBy('area_code');
 
+        $dataKeyByAreaCode = $data->keyBy('area_code');
         $data = $areas->map(function ($area) use ($dataKeyByAreaCode, $days_Since_enum_start, $total_Enum_days) {
             $area->bar_width = 0.7;
             $area->total = $dataKeyByAreaCode[$area->code]->total ?? 0;
             $area->proportion = Helpers::safeDivide($area->total, $area->value) * 100;
             $area->expected = Helpers::safeDivide($days_Since_enum_start, $total_Enum_days) * 100;
+            $area->expected_value = $area->value;
+            $area->tooltip =  "<b>{$area->value}</b><br><br><b>Households:</b> %{value:.0f} (number) <br> <b>Performance:</b>%{text} %<extra></extra>";
             return $area;
         });
 
-        
-        $traceTodayTarget = array_merge(
+        $tracePercentageTodayTarget = array_merge(
             $this::PercentageBarTraceTemplate,
             [
                 'x' => $data->pluck('name')->all(),
                 'y' => $data->pluck('expected')->all(),
+                'text' => $data->pluck('total')->all(),
+                'texttemplate' => "%{value:.0f}",
+                'name' => __("Today's target"),
+                'visible' => 'true',
+                'marker' => ['color' => '#c5c5c5','opacity'=>0.4],
+                'hovertemplate' => "<b>%{x}</b><br><br><b>Households:</b> %{text:.0f} (number) <br> <b>Performance: </b>%{value:.0f}<extra></extra>",
+
+            ]
+        );
+
+        $tracePercentageActual = array_merge(
+            $this::PercentageBarTraceTemplate,
+            [
+                'x' => $data->pluck('name')->all(),
+                'y' => $data->pluck('proportion')->all(),
+                'text' => $data->pluck('total')->all(),
+                'texttemplate' => "%{value:.0f}",
+                'width' => $data->pluck('bar_width')->all(),
+                'marker' => ['color' => '#1e3b87'],
+                'visible' => 'true',
+                'name' => __('Mapped population'),
+                'hovertemplate' => "<b>%{x}</b><br><br><b>Households:</b> %{text:.0f} (number) <br> <b>Performance: </b>%{value:.0f}%<extra></extra>",
+
+            ]
+        );
+
+        $traceTodayTarget = array_merge(
+            $this::PercentageBarTraceTemplate,
+            [
+                'x' => $data->pluck('name')->all(),
+                'y' => $data->pluck('expected_value')->all(),
+                'text' => $data->pluck('expected')->all(),
                 'texttemplate' => "%{value:.0f}",
                 'hovertemplate' => "%{label}<br> %{value:.0f}",
-                'name' => "Today's target",
+                'name' => __("Today's target"),
+                'visible' => false,
                 'marker' => ['color' => '#c5c5c5','opacity'=>0.4],
+                'hovertemplate' => "<b>%{x}</b><br><br><b>Households:</b> %{value:.0f} (number) <br> <b>Performance:</b>%{text} %<extra></extra>",
+
+
             ]
         );
 
@@ -107,25 +145,58 @@ class PercentagePopulationEnumeratedAgainstTarget extends Chart implements BarCh
             $this::PercentageBarTraceTemplate,
             [
                 'x' => $data->pluck('name')->all(),
-                'y' => $data->pluck('proportion')->all(),
-                't' => $data->pluck('expected')->all(), 
+                'y' => $data->pluck('total')->all(),
                 'texttemplate' => "%{value:.0f}",
                 'hovertemplate' => "%{label}<br> %{value:.0f}",
                 'width' => $data->pluck('bar_width')->all(),
                 'marker' => ['color' => '#1e3b87'],
-                'name' => 'Enumerated',
-                'hovertemplate' => '<i>Area</i>: %{x} <br><i>Enumerated</i>: %{y}<br> <b>%{text}</b>',
+                'visible' => false,
+                'name' => __('Mapped'),
+                'hovertemplate' => "<b>%{x}</b><br><br><b>Households:</b> %{value:.0f} (number) <br> <b>Performance:</b>%{y} %<extra></extra>",
+
             ]
         );
+        return [$traceTodayTarget, $traceActual, $tracePercentageTodayTarget, $tracePercentageActual];
 
-        return [$traceTodayTarget, $traceActual];
     }
 
     protected function getLayout(string $filterPath): array
     {
         $layout = parent::getLayout($filterPath);
+        $layout['updatemenus'] = [[
+                'buttons' => [
+                    [
+                        'args' => [['visible' => [\false, \false, true, true]],[ 'yaxis' => [
+                            'title' => ['text' => __('% of persons')]
+                        ]]],
+                        'label' => '%',
+                        'method' => 'update',
+                        'active' => \true,
+
+                    ],
+                    [
+                        'args' => [['visible' => [ true, true,false,false]], ['yaxis' => [
+                            'title' => ['text' => __('# of persons')]
+                        ]
+                        ]],
+                        'label' => '#',
+                        'method' => 'update',
+                        'active' => \false
+                    ]
+                ],
+                'direction' => 'left',
+                'pad' => ['r' => 20],
+                'showactive' => true,
+                'type' => 'buttons',
+                'x' => 1,
+                'xanchor' => 'right',
+                'align' => 'left',
+                'y' => 1.1,
+                'yanchor' => 'top',
+                'bordercolor' => '#c5c5c5',
+            ]];
         $layout['xaxis']['title']['text'] = $this->getAreaBasedAxisTitle($filterPath);
-        $layout['yaxis']['title']['text'] = "% of population";
+        $layout['yaxis']['title']['text'] = __('% of persons');
         $layout['barmode'] = 'overlay';
         if ($this->isSampleData) {
             $layout['annotations'] = [[

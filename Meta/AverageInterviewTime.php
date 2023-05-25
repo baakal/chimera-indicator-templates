@@ -5,6 +5,7 @@ namespace App\IndicatorTemplates\Meta;
 use Illuminate\Support\Collection;
 use Uneca\Chimera\Http\Livewire\Chart;
 use Uneca\Chimera\Interfaces\BarChart;
+use Uneca\Chimera\Models\Area;
 use Uneca\Chimera\Services\AreaTree;
 use Uneca\Chimera\Traits\FilterBasedAxisTitle;
 use Uneca\Chimera\Services\Helpers;
@@ -13,7 +14,7 @@ class AverageInterviewTime extends Chart implements BarChart
 {
     use FilterBasedAxisTitle;
     private bool $isSampleData = false;
-    private int $ConversionRateToMinute = 1;
+    private int $ConversionRateToMinute = 60;
 
     public function getData(array $filter): Collection
     {
@@ -50,19 +51,19 @@ class AverageInterviewTime extends Chart implements BarChart
                 'total_interview_time' => '5500',
             ],
         ]);
-      
+
     }
 
     protected function getTraces(Collection $data, string $filterPath): array
     {
         $areas = (new AreaTree())->areas($filterPath);
         $dataKeyByAreaCode = $data->keyBy('area_code');
-        
+
         if($this->isSampleData) {
             $areas = $data->map(function ($area) {
                 return (object)['code' => $area->area_code, 'name' => $area->area_name];
             });
-            
+
         }
 
         $data = $areas->map(function ($area) use ($dataKeyByAreaCode) {
@@ -80,21 +81,20 @@ class AverageInterviewTime extends Chart implements BarChart
             }
             return $area;
         });
-        
         $totalInterviewTime = $data->sum('total_interview_time');
         $totalHouseholds = $data->sum('total_household');
         $averageInterviewTimeInMinute = Helpers::safeDivide(Helpers::safeDivide($totalInterviewTime, $totalHouseholds),$this->ConversionRateToMinute,true);
 
         $data[] = (object)['average_interview_time' => $averageInterviewTimeInMinute,'total_household' => $totalInterviewTime,'total_interview_time' => $totalHouseholds,
                     'area_code'=> '','name'=>'All '.$this->getAreaBasedAxisTitle($filterPath)];
-        
+
         $traceActual = array_merge(
             $this::BarTraceTemplate,
             [
                 'x' => $data->pluck('name')->all(),
                 'y' => $data->pluck('average_interview_time')->all(),
-                'texttemplate' => "%{value:.2f}",
-                'hovertemplate' => "%{label}<br> %{value:.2f}",
+                'texttemplate' => "%{value:.0f}",
+                'hovertemplate' => "%{label}<br> %{value:.0f}",
                 'name' => __('Average interview time'),
             ]
         );

@@ -53,19 +53,19 @@ class PartiallyCompletedCases extends Chart implements BarChart
     {
         $areas = (new AreaTree())->areas($filterPath);
         $dataKeyByAreaCode = $data->keyBy('area_code');
-        
+
         if($this->isSampleData) {
             $areas = $data->map(function ($area) {
                 return (object)['code' => $area->area_code, 'name' => $area->area_name];
             });
-            
+
         }
 
         $data = $areas->map(function ($area) use ($dataKeyByAreaCode) {
             $area->partial = $dataKeyByAreaCode[$area->code]->partial ?? 0;
             return $area;
         });
-        
+
         $tracePartial = array_merge(
             $this::ValueTraceTemplate,
             [
@@ -76,7 +76,7 @@ class PartiallyCompletedCases extends Chart implements BarChart
                 'name' => __('Partially saved cases'),
             ]
         );
-        
+
         return [$tracePartial];
     }
 
@@ -85,7 +85,7 @@ class PartiallyCompletedCases extends Chart implements BarChart
         $layout=parent::getLayout($filterPath);
 
         $layout['xaxis']['title']['text'] = $this->getAreaBasedAxisTitle($filterPath);
-        $layout['yaxis']['title']['text'] = "# of partially saved cases";
+        $layout['yaxis']['title']['text'] = __("# of partially saved cases");
         if ($this->isSampleData) {
             $layout['annotations'] = [[
                 'text' => __('SAMPLE'),

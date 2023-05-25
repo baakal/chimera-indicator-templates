@@ -74,7 +74,7 @@ class PopulationEnumeratedAgainstTarget extends Chart implements BarChart
         $questionnaire = $this->indicator->getQuestionnaire();
         // $startDate = $questionnaire->start_date->subDays(1);
         $endDate = $questionnaire->end_date;
-        
+
         $todayDate = Carbon::now()->format('Y-m-d');
         if($todayDate > $endDate->format('Y-m-d')){
             $todayDate = $endDate->format('Y-m-d');
@@ -84,7 +84,7 @@ class PopulationEnumeratedAgainstTarget extends Chart implements BarChart
 
         $dataKeyByAreaCode = $data->keyBy('area_code');
         $data = $areas->map(function ($area) use ($dataKeyByAreaCode) {
-            $area->expected = $area->value;
+            $area->expected = $area->value??0;
             $area->bar_width = 0.7;
             $area->total = $dataKeyByAreaCode[$area->code]->total ?? 0;
             $area->partial = $dataKeyByAreaCode[$area->code]->partial ?? 0;
@@ -96,11 +96,11 @@ class PopulationEnumeratedAgainstTarget extends Chart implements BarChart
             $this::ValueTraceTemplate,
             [
                 'x' => $data->pluck('name')->all(),
-                'y' => $data->pluck('expected')->all(),  
+                'y' => $data->pluck('expected')->all(),
                 'texttemplate' => "%{value:.0f}",
                 'hovertemplate' => "%{label}<br> %{value:.0f}",
                 'textposition' => 'outside',
-                'name' => "Today's target",
+                'name' => __("Today's target"),
                 'marker' => ['color' => '#c5c5c5','opacity'=>0.4],
             ]
         );
@@ -113,20 +113,20 @@ class PopulationEnumeratedAgainstTarget extends Chart implements BarChart
                 'texttemplate' => "%{value:.0f}",
                 'hovertemplate' => "%{label}<br> %{value:.0f}",
                 'width' => $data->pluck('bar_width')->all(),
-                'name' => 'Enumerated',
+                'name' => __('Enumerated'),
                 'marker' => ['color' => '#1e3b87'],
             ]
         );
 
         return [$traceTodayTarget, $traceActual];
-   
+
     }
 
     protected function getLayout(string $filterPath): array
     {
         $layout = parent::getLayout($filterPath);
         $layout['xaxis']['title']['text'] = $this->getAreaBasedAxisTitle($filterPath);
-        $layout['yaxis']['title']['text'] = "# of persons";
+        $layout['yaxis']['title']['text'] = __("# of persons");
         $layout['barmode'] = 'overlay';
         if ($this->isSampleData) {
             $layout['annotations'] = [[

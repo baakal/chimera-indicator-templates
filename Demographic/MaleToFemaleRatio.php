@@ -53,10 +53,10 @@ class MaleToFemaleRatio extends Chart implements BarChart
         );
     }
 
-    
+
     protected function getTraces(Collection $data, string $filterPath): array
     {
-        
+
         $areas = (new AreaTree())->areas($filterPath);
         $dataKeyByAreaCode = $data->keyBy('area_code');
         if($this->isSampleData){
@@ -66,14 +66,14 @@ class MaleToFemaleRatio extends Chart implements BarChart
                     'name' => $item->area_name,
                 ];
             });
-        }       
+        }
         $data = $areas->map(function ($area) use ($dataKeyByAreaCode) {
             $area->males = $dataKeyByAreaCode[$area->code]->males ?? 0;
             $area->females = $dataKeyByAreaCode[$area->code]->females ?? 0;
             $area->m_ratio = Helpers::safeDivide($area->males, $area->females) * 100;
             return $area;
         });
-        
+
         $totalMales = $data->sum('males');
         $totalFemales = $data->sum('females');
         $totalRate = Helpers::safeDivide($totalMales, $totalFemales) * 100;
@@ -87,10 +87,10 @@ class MaleToFemaleRatio extends Chart implements BarChart
                 'texttemplate' => "%{value:.2f}",
                 'hovertemplate' => "%{label}<br> %{value:.2f}",
                 'marker' => ['color' => '#1e3b87'],
-                'name' => 'Males per 100 females',
+                'name' => __('Males per 100 females'),
             ]
         );
-        
+
         return [$traceRate];
     }
 
@@ -99,7 +99,7 @@ class MaleToFemaleRatio extends Chart implements BarChart
         $layout=parent::getLayout($filterPath);
 
         $layout['xaxis']['title']['text'] = $this->getAreaBasedAxisTitle($filterPath);
-        $layout['yaxis']['title']['text'] = "# of males per 100 females";
+        $layout['yaxis']['title']['text'] = __("# of males per 100 females");
         if ($this->isSampleData) {
             $layout['annotations'] = [[
                 'text' => __('SAMPLE'),
